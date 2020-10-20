@@ -9,6 +9,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val textView = findViewById<TextView>(R.id.textViewValue)
+        val lightBrightnesView = findViewById<LightBrightnesView>(R.id.lightBrightnesView)
+
+        lightBrightnesView.setOnValueChange = {
+            textView.setText(it.toInt().toString())
+        }
 
     }
 }

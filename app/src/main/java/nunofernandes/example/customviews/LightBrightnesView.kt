@@ -30,6 +30,8 @@ class LightBrightnesView: View {
         init()
     }
 
+    var setOnValueChange : ((value : Float) -> Unit)? = null
+
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     constructor(
             context: Context?,
@@ -67,6 +69,9 @@ class LightBrightnesView: View {
             MotionEvent.ACTION_DOWN, MotionEvent.ACTION_MOVE -> {
                 touchY = y?:0F
                 invalidate()
+                setOnValueChange?.let {
+                    it.invoke(touchY)
+                }
             }
         }
         return true
