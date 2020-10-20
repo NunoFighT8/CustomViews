@@ -70,7 +70,12 @@ class LightBrightnesView: View {
                 touchY = y?:0F
                 invalidate()
                 setOnValueChange?.let {
-                    it.invoke(touchY)
+                    var v = (100-(touchY/height) * 100)
+                    if (v > 100)
+                        v = 100F
+                    if (v < 0)
+                        v = 0F
+                    it.invoke(v)
                 }
             }
         }
